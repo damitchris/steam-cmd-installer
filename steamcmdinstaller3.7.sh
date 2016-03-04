@@ -1,5 +1,6 @@
 #!/bin/bash
 
+## Change insdir="$PWD" if you want to use the script folder
 insdir="$1"
 user=""
 pass=""
