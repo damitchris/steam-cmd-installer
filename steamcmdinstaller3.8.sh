@@ -24,7 +24,7 @@ function getInput()
 }
 echo this scrip also has now maintenance capabilities,do you wish install ot maintain your server? inst or maint
 read -r mai
-if test "mai" == "maint"
+if test "$mai" == "maint"
 then
  echo this will help you maintain the server such as update functions, backups, and restore, this code will contain modified code of my own, so fell free to republish it as long that you give me credit.
  echo what would you like to do? backup or update
