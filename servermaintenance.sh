@@ -1,5 +1,5 @@
 #!/bin/bash
-echo this will help you maintain the server such as update functions, backups, and restore, this code will contain modified code of my own, so fell free to republish it as long that you give me credit.
+echo this will help you maintain your server such as update functions, backups, and restore, this code will contain modified code of my own, so fell free to republish it as long that you give me credit.
 echo what would you like to do? backup or update
 read -r functions
 while [ -z "$functions" ]; do
