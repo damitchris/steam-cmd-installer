@@ -22,12 +22,12 @@ function getInput()
   done
   eval "$3=$rez"
 }
-echo this scrip also has now maintenance capabilities,do you wish install ot maintain your server? inst or maint
+echo --------- do you wish install steamcmd and a server or update/backup your server? instal or maint ------------
 read -r mai
 if test "$mai" == "maint"
 then
- echo this will help you maintain the server such as update functions, backups, and restore, this code will contain modified code of my own, so fell free to republish it as long that you give me credit.
- echo what would you like to do? backup or update
+ echo  this will help you maintain the server such as update functions, backups,, this code will contain modified code of my own, so fell free to republish it as long that you give me credit. 
+ echo ------- what would you like to do? backup or update -------
  read -r functions
  while [ -z "$functions" ]; do
      echo ------ Please give an input ------
