@@ -7,6 +7,5 @@ Plan: make the script put the user input before starting any work so the ycan ab
 Install a game from the script after it installed steamcmd,
 No need to touch a file manager, the script will handle everything from downloading to install steamcmd and optionally a game,
 anonymous logging support,
-the script can make automatically a user account in linux for steam without password(almost done!),
 #planned feature
 make it so the script dont install anything until the user inputted all the needed variable(not sure i will implement it)
