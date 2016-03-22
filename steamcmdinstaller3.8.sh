@@ -24,17 +24,28 @@ function getInput()
   eval "$3=$rez"
 }
 echo --------- do you wish install steamcmd and a server or update/backup your server? instal or maint ------------
-read -r mai
-if test "$mai" == "maint"
+select mai in "Maintenance" "Install"; do
+    case $mai in
+        Maintenance ) mai=1 
+                     break ;;
+        Install ) mai=0 
+                      break ;;
+    esac
+done
+if test "$mai" == "1"
 then
  echo  this will help you maintain the server such as update functions, backups,, this code will contain modified code of my own, so fell free to republish it as long that you give me credit. 
  echo ------- what would you like to do? backup or update -------
- read -r functions
- while [ -z "$functions" ]; do
-     echo ------ Please give an input ------
-     read -r functions
+     select functions in "Update" "Backup"; do
+     case $functions in
+        Update ) functions=1 
+                     break ;;
+        Backup ) functions=2 
+                      break ;;
+    esac
  done
- if test "$functions" == "backup"  
+ 
+ if test "$functions" == "2"  
  then 
  now=$(date +"%m-%d-%y")
  if [ -z "$now" ]; then
@@ -99,7 +110,7 @@ then
      fi
    fi
  fi
- if test "$functions" == "update" 
+ if test "$functions" == "1" 
  then
   echo put the appid of the server
   read -r appid
@@ -107,8 +118,8 @@ then
    echo ------ Please give an input ------
    read -r appid
   done
-  echo input your username, you can log as anonymous.
-  read -r username
+ 
+  echo please input a username, you can log as anonymous
   while [ -z "$username" ]; do
    echo ------ Please give an input ------
    read -r username
@@ -250,7 +261,17 @@ then
   getInput "Which appid you wish to install ?" "appid" appid
   if test "$appid" == "90"
   then # https://developer.valvesoftware.com/wiki/Dedicated_Servers_List
-    getInput "Do you need to install a mod for HL1 / CS1.6 ? [no or <mod_name>]" "a mod" appmod
+    echo "Do you need to install a mod for HL1 / CS1.6 ? [no or <mod_name>]"
+    select appmod in "HL1" "CS1.6" "no"; do
+    case $appmod in
+        CS1.6 ) appmod=CS1.6 
+                     break ;;
+        HL1 ) appmod=HL1 
+                      break ;;
+        no ) appmod=no 
+                      break ;;
+     esac
+    done
   fi
   getInput "Where in [$insdir] do you want to put it ?" "path" dir
   mkdir $insdir/$dir
