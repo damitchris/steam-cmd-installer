@@ -286,7 +286,17 @@ else
   getInput "Which appid you wish to install ?" "appid" appid
   if test "$appid" == "90"
   then # https://developer.valvesoftware.com/wiki/Dedicated_Servers_List
-    getInput "Do you need to install a mod for HL1 / CS1.6 ? [no or <mod_name>]" "a mod" appmod
+    echo "Do you need to install a mod for HL1 / CS1.6 ? [no or <mod_name>]" "a mod" appmod
+    select appmod in "HL1" "CS1.6" "no"; do
+    case $appmod in
+        CS1.6 ) appmod=CS1.6 
+                     break ;;
+        HL1 ) appmod=HL1 
+                      break ;;
+        no ) appmod=no 
+                      break ;;
+     esac
+    done
   fi
   getInput "Where in [$insdir] do you want to put it ?" "path" dir
   mkdir $insdir/$dir
