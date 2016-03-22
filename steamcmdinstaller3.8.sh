@@ -10,6 +10,7 @@ appmod=""
 bool=""
 chkhash=""
 archit=""
+file="steamcmd.sh"
 
 function getInput()
 {
@@ -179,7 +180,7 @@ mkdir $insdir/steamcmd
 cd $insdir/steamcmd
 
 echo ------- Downloading steam -------
-wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz 
 
 chkhash=$(md5sum steamcmd_linux.tar.gz | cut -d' ' -f1)
 if test "$chkhash" == "09e3f75c1ab5a501945c8c8b10c7f50e" 
@@ -190,11 +191,48 @@ else
   exit 0
 fi
 
-tar -xvzf steamcmd_linux.tar.gz
+tar -xvzf steamcmd_linux.tar.gz 
 
 # Make it executable
-chmod +x steamcmd.sh
+if [[ -x "$file" ]]
+then
+  echo steamcmd.sh is executable
+else
+ echo $file is not executable or not found,checking if it exist at the $insdir/steamcmd
+ if [ -f "$file" ] 
+ then
+  echo file found giving it permission
+  chmod +x steamcmd.sh
+ else
+  echo File not found, do you wish to redownload steamcmd? y or n
+  read -r redown
+  while [ -z "$redown" ]; do
+   echo ------ Please give an awnser ------
+   read -r redown
+  done
+  if test "$redown" == "y"
+  then 
+   echo ------- Downloading steam -------
+   wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz 
 
+   chkhash=$(md5sum steamcmd_linux.tar.gz | cut -d' ' -f1)
+   if test "$chkhash" == "09e3f75c1ab5a501945c8c8b10c7f50e" 
+   then
+    echo ----- Checksum OK -------
+    tar -xvzf steamcmd_linux.tar.gz 
+   else
+    echo ----- Checksum FAIL ------- $chkhash
+    exit 1
+    if [[ -x "$file" ]]
+    then
+     echo --------steamcmd.sh is executable----------
+    else
+     chmod +x steamcmd.sh
+    fi
+   fi
+  fi
+ fi
+ fi
 echo ------- Do you wish to install a game now ? [y or n] -------
 read -r bool
    
