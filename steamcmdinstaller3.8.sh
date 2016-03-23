@@ -12,7 +12,7 @@ bool=""
 chkhash=""
 archit=""
 file="steamcmd.sh"
-
+echo this is a typo
 echo checking update
 rm -rf /home/$USER/cmdup
 git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
@@ -22,10 +22,11 @@ if [ $? -eq 1 ]; then
  echo -a updating....
  mkdir /home/$USER/oldsh
  mv $0 /home/$USER/oldsh
+ rm steamcmdinstaller3.8.sh
  mv /home/$USER/cmdup/steamcmdinstaller3.8.sh /home/$USER/
  rm -rf /home/$USER/cmdup
- mv steamcmdintaller3.8 $0
- ./$0
+ chmod 755 steamcmdinstaller3.8.sh
+ ./steamcmdinstaller3.8.sh
 else
     echo you are up to date
 fi
@@ -53,9 +54,11 @@ done
 if test "$mai" == "1"
 then
  sudo apt-get install git 
-home/$USER/cmdup
+ 
+ rm -rf servermaintenance.sh
  mv  /home/$USER/cmdup/servermaintenance.sh /home/$USER/
  chmod +x servermaintenance.sh
+ rm -rf home/$USER/cmdup
  
  ./servermaintenance.sh
  exit
