@@ -12,7 +12,6 @@ bool=""
 chkhash=""
 archit=""
 file="steamcmd.sh"
-echo this is a typo
 echo checking update
 rm -rf /home/$USER/cmdup
 git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
@@ -28,6 +27,7 @@ if [ $? -eq 1 ]; then
  chmod 755 steamcmdinstaller3.8.sh
  ./steamcmdinstaller3.8.sh
 else
+    rm -rf /home/$USER/cmdup
     echo you are up to date
 fi
 
