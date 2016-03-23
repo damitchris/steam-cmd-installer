@@ -1,12 +1,15 @@
-#!/bin/bash
- echo this will help you maintain the server such as update functions, backups, and restore, this code will contain modified code of my own, so fell free to republish it as long that you give me credit.
- echo what would you like to do? backup or update
- read -r functions
- while [ -z "$functions" ]; do
-     echo ------ Please give an input ------
-     read -r functions
+echo  this will help you maintain the server such as update functions, backups,, this code will contain modified code of my own, so fell free to republish it as long that you give me credit. 
+ echo ------- what would you like to do? backup or update -------
+     select functions in "Update" "Backup"; do
+     case $functions in
+        Update ) functions=1 
+                     break ;;
+        Backup ) functions=2 
+                      break ;;
+    esac
  done
- if test "$functions" == "backup"  
+ 
+ if test "$functions" == "2"  
  then 
  now=$(date +"%m-%d-%y")
  if [ -z "$now" ]; then
@@ -71,7 +74,7 @@
      fi
    fi
  fi
- if test "$functions" == "update" 
+ if test "$functions" == "1" 
  then
   echo put the appid of the server
   read -r appid
@@ -79,8 +82,8 @@
    echo ------ Please give an input ------
    read -r appid
   done
-  echo input your username, you can log as anonymous.
-  read -r username
+ 
+  echo please input a username, you can log as anonymous
   while [ -z "$username" ]; do
    echo ------ Please give an input ------
    read -r username
@@ -117,6 +120,6 @@
    fi
   fi
   ./steamcmd.sh +login $username $password +app_update $appid +quit
+  exit 0
  fi
- 
-exit 0
+fi
