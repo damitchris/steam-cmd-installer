@@ -1,3 +1,19 @@
+Skip to content
+This repository  
+Search
+Pull requests
+Issues
+Gist
+ @Gousaid67
+ Unwatch 4
+  Unstar 3
+  Fork 1 Gousaid67/steam-cmd-installer
+ Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs  Settings
+Branch: master Find file Copy pathsteam-cmd-installer/steamcmdinstaller3.8.sh
+258d870  a minute ago
+@Gousaid67 Gousaid67 will now update from the cloud
+1 contributor
+RawBlameHistory    211 lines (194 sloc)  5.48 KB
 #!/bin/bash
 
 ## Change insdir="$PWD" if you want to use the script folder
@@ -55,7 +71,7 @@ then
 home/$USER/cmdup
  mv  /home/$USER/cmdup/servermaintenance.sh /home/$USER/
  chmod +x servermaintenance.sh
- rm -rf /home/$USER/cmdup
+ 
  ./servermaintenance.sh
  exit
 fi
@@ -201,10 +217,14 @@ else
   mkdir $insdir/$dir
   if test "$appmod" == "no"
   then
+    rm -rf /home/$USER/cmdup
     ./steamcmd.sh +login $user $pass +force_install_dir $insdir/$dir +app_update $appid validate +quit
   else
+    rm -rf /home/$USER/cmdup
     ./steamcmd.sh +login $user $pass +force_install_dir $insdir/$dir +app_update $appid validate +app_set_config "90 mod $appmod" +quit
   fi
 fi
 
 exit 0 
+Status API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help
