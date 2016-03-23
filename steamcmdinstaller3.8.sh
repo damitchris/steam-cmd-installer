@@ -13,7 +13,7 @@ archit=""
 file="steamcmd.sh"
 
 echo checking update
-
+rm -rf /home/$USER/cmdup
 git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
 
 cmp -s $0 /home/$USER/cmdup/steamcmdinstaller3.8.sh > /dev/null
@@ -22,6 +22,7 @@ if [ $? -eq 1 ]; then
  mkdir /home/$USER/oldsh
  mv $0 /home/$USER/oldsh
  mv /home/$USER/cmdup/steamcmdinstaller3.8.sh /home/$USER/
+ rm -rf /home/$USER/cmdup
  mv steamcmdintaller3.8 $0
  ./$0
 else
@@ -51,10 +52,10 @@ done
 if test "$mai" == "1"
 then
  sudo apt-get install git 
-home/$USER/cmdmaint
- mv  /home/$USER/cmdmaint/servermaintenance.sh /home/$USER/
+home/$USER/cmdup
+ mv  /home/$USER/cmdup/servermaintenance.sh /home/$USER/
  chmod +x servermaintenance.sh
- rm -rf /home/$USER/cmdmaint
+ rm -rf /home/$USER/cmdup
  ./servermaintenance.sh
  exit
 fi
