@@ -19,7 +19,7 @@ git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
 
 cmp -s $0 /home/$USER/cmdup/steamcmdinstaller3.8.sh > /dev/null
 if [ $? -eq 1 ]; then
- clear
+ 
  echo -a updating....
  mkdir /home/$USER/oldsh
  mv $0 /home/$USER/oldsh
@@ -30,7 +30,7 @@ if [ $? -eq 1 ]; then
  ./steamcmdinstaller3.8.sh
 else
     rm -rf /home/$USER/cmdup
-    clear
+    
     echo you are up to date
 fi
 
@@ -45,6 +45,7 @@ function getInput()
   done
   eval "$3=$rez"
 }
+clear
 echo --------- do you wish install steamcmd and a server or update/backup your server? instal or maint ------------
 select mai in "Maintenance" "Install"; do
     case $mai in
@@ -62,6 +63,7 @@ then
  mv  /home/$USER/cmdup/servermaintenance.sh /home/$USER/
  chmod +x servermaintenance.sh
  rm -rf home/$USER/cmdup
+  clear 
  
  ./servermaintenance.sh
  exit
