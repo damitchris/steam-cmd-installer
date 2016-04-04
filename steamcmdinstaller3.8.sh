@@ -25,7 +25,6 @@ if [ $? -eq 1 ]; then
  mv $0 /home/$USER/oldsh
  rm steamcmdinstaller3.8.sh
  mv /home/$USER/cmdup/steamcmdinstaller3.8.sh /home/$USER/
- rm -rf /home/$USER/cmdup
  chmod 755 steamcmdinstaller3.8.sh
  ./steamcmdinstaller3.8.sh
 else
