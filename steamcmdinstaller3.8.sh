@@ -14,6 +14,7 @@ archit=""
 file="steamcmd.sh"
 clear
 echo checking update
+sudo apt-get install git 
 rm -rf /home/$USER/cmdup
 git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
 
