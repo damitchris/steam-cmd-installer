@@ -57,7 +57,6 @@ select mai in "Maintenance" "Install"; do
 done
 if test "$mai" == "1"
 then
- sudo apt-get install git 
  
  rm -rf servermaintenance.sh
  mv  /home/$USER/cmdup/servermaintenance.sh /home/$USER/
