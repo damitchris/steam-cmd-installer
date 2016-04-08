@@ -13,6 +13,7 @@ chkhash=""
 archit=""
 file="steamcmd.sh"
 clear
+# remove the update function (line 17 to line 36 ) if you want to make your custom version of the script
 echo checking update
 sudo apt-get install git 
 rm -rf /home/$USER/cmdup
