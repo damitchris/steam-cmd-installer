@@ -13,7 +13,7 @@ chkhash=""
 archit=""
 file="steamcmd.sh"
 clear
-# remove the update function (line 17 to line 36 ) if you are customizing the script
+# remove the update function (line 18 to line 36 ) if you are customizing the script
 #  or  change the first url at line 22 to use a custom update directory(dont forget to change the names of the files in the path)
 echo checking update
 sudo apt-get install git 
