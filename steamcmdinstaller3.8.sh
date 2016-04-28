@@ -31,8 +31,7 @@ if [ $? -eq 1 ]; then
  chmod +x steamcmdinstaller3.8.sh
  ./steamcmdinstaller3.8.sh
 else
-    rm -rf /home/$USER/cmdup
-    
+
     echo you are up to date
 fi
 
