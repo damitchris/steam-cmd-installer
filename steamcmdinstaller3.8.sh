@@ -2,6 +2,7 @@
 #!/bin/bash
 
 ## Change insdir="$PWD" if you want to use the script folder
+update="steamcmdinstaller3.9.sh"
 insdir="$1"
 user=""
 pass=""
@@ -20,16 +21,16 @@ sudo apt-get install git
 rm -rf /home/$USER/cmdup
 git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
 
-cmp -s $0 /home/$USER/cmdup/steamcmdinstaller3.8.sh > /dev/null
+cmp -s $0 /home/$USER/cmdup/$update > /dev/null
 if [ $? -eq 1 ]; then
  
  echo -a updating....
  mkdir /home/$USER/oldsh
  mv $0 /home/$USER/oldsh
- rm steamcmdinstaller3.8.sh
- mv /home/$USER/cmdup/steamcmdinstaller3.8.sh /home/$USER/
- chmod +x steamcmdinstaller3.8.sh
- ./steamcmdinstaller3.8.sh
+ rm $0
+ mv /home/$USER/cmdup/$update /home/$USER/
+ chmod +x $update
+ ./$update
 else
 
     echo you are up to date
