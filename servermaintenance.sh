@@ -122,4 +122,3 @@ echo  this will help you maintain the server such as update functions, backups,,
   ./steamcmd.sh +login $username $password +app_update $appid +quit
   exit 0
  fi
-fi
