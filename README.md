@@ -9,4 +9,4 @@ Install a game from the script after it installed steamcmd,Update coming directl
 No need to touch a file manager, the script will handle everything from downloading to install steamcmd and optionally a game,
 anonymous logging support,
 #planned feature
-adding support for multiple Distro in one script(testing phase)
+none for now
