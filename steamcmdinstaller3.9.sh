@@ -10,6 +10,7 @@ appmod=""
 bool=""
 chkhash=""
 archit=""
+ukwn=""
 file="steamcmd.sh"
 # try various methods, in order of preference, to detect distro
 # store result in variable '$distro'
@@ -48,10 +49,10 @@ if [ $? -eq 1 ]; then
  echo -a updating....
  mkdir /home/$USER/oldsh
  mv $0 /home/$USER/oldsh
- rm steamcmdinstaller3.8.sh
+ rm steamcmdinstaller3.9.sh
  mv /home/$USER/cmdup/steamcmdinstaller3.8.sh /home/$USER/
- chmod +x steamcmdinstaller3.8.sh
- ./steamcmdinstaller3.8.sh
+ chmod +x steamcmdinstaller3.9.sh
+ ./steamcmdinstaller3.9.sh
 else
     rm -rf /home/$USER/cmdup
     
