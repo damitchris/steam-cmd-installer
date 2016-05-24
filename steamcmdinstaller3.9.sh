@@ -139,14 +139,7 @@ cd $insdir/steamcmd
 echo ------- Downloading steam -------
 wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
 
-chkhash=$(md5sum steamcmd_linux.tar.gz | cut -d' ' -f1)
-if test "$chkhash" == "09e3f75c1ab5a501945c8c8b10c7f50e"
-then
-  echo ----- Checksum OK -------
-else
-  echo ----- Checksum FAIL ------- $chkhash
-  exit 0
-fi
+
 
 tar -xvzf steamcmd_linux.tar.gz
 
