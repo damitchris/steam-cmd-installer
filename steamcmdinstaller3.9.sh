@@ -25,8 +25,8 @@ fi
 # convert to lowercase
 distro=$(printf '%s\n' "$distro" | LC_ALL=C tr '[:upper:]' '[:lower:]')
 
-# remove the update function (line 37 to line 36 ) if you are customizing the script
-#  or  change the first url at line 20 to use a custom update directory(dont forget to change the names of the files in the path)
+# remove the update function (line 49 to line 61 ) if you are customizing the script
+#  or  change the first url at line 43 to use a custom update directory(dont forget to change the names of the files in the path)
 echo checking update
 case "$distro" in
    debian*)  sudo apt-get install git  ;;
@@ -119,7 +119,7 @@ then
    ubuntu*)  sudo apt-get install lib32gcc1  ;;
    mint*)     sudo apt-get install lib32gcc1  ;;
    zorin*)   sudo apt-get install lib32gcc1  ;;
-   *)        echo "unknown distro: '$distro' skipping update" ; ukwn= 1 ;;
+   *)        echo "unknown distro: '$distro' skipping update, you will need to install those package manually:lib32gcc1 " ; ukwn= 1 ;;
   esac
    
   fi
@@ -165,14 +165,6 @@ else
    echo ------- Downloading steam -------
    wget https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
 
-   chkhash=$(md5sum steamcmd_linux.tar.gz | cut -d' ' -f1)
-   if test "$chkhash" == "09e3f75c1ab5a501945c8c8b10c7f50e"
-   then
-    echo ----- Checksum OK -------
-    tar -xvzf steamcmd_linux.tar.gz
-   else
-    echo ----- Checksum FAIL ------- $chkhash
-    exit 1
     if [[ -x "$file" ]]
     then
      echo --------steamcmd.sh is executable----------
