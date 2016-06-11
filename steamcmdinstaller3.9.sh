@@ -1,4 +1,5 @@
 #!/bin/bash
+# if you have any issues, open an issue on github
 
 ## Change insdir="$PWD" if you want to use the script folder
 insdir="$1"
