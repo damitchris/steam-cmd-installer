@@ -43,14 +43,14 @@ then
     git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
 fi
 
-cmp -s $0 /home/$USER/cmdup/steamcmdinstaller3.8.sh > /dev/null
+cmp -s $0 /home/$USER/cmdup/steamcmdinstaller3.9.sh > /dev/null
 if [ $? -eq 1 ]; then
  
  echo -a updating....
  mkdir /home/$USER/oldsh
  mv $0 /home/$USER/oldsh
  rm steamcmdinstaller3.9.sh
- mv /home/$USER/cmdup/steamcmdinstaller3.8.sh /home/$USER/
+ mv /home/$USER/cmdup/steamcmdinstaller3.9.sh /home/$USER/
  chmod +x steamcmdinstaller3.9.sh
  ./steamcmdinstaller3.9.sh
 else
