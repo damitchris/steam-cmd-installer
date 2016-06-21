@@ -18,7 +18,7 @@ file="steamcmd.sh"
 if type lsb_release >/dev/null 2>&1 ; then
    distro=$(lsb_release -i -s)
 elif [ -e /etc/os-release ] ; then
-   distro=$(awk -F= '$1 == "ID" {print $2}' /etc/os-release)
+   distro=$(awk -F= '$1 == "ID" {print $2}' /etc/os-release | tr -d '"')
 elif [ -e /etc/some-other-release-file ] ; then
    distro=$(ihavenfihowtohandleotherhypotheticalreleasefiles)
 fi
@@ -40,13 +40,34 @@ esac
 sudo apt-get install git
 if test "ukwn" = "0"
 then
+  if [  $USER == "root" ]
+  then
+    rm -rf /root/cmdup
+    git clone https://github.com/Gousaid67/steam-cmd-installer /root/cmdup
+  else
     rm -rf /home/$USER/cmdup
     git clone https://github.com/Gousaid67/steam-cmd-installer /home/$USER/cmdup
+  fi
 fi
 
+if [  $USER == "root" ]
+  then
+    cmp -s $0 /root/cmdup/steamcmdinstaller3.9.sh > /dev/null
+  else
 cmp -s $0 /home/$USER/cmdup/steamcmdinstaller3.9.sh > /dev/null
+fi
 if [ $? -eq 1 ]; then
- 
+
+  if [  $USER == "root" ]
+    then
+      echo -a updating....
+      mkdir /root/oldsh
+      mv $0 /root/oldsh
+      rm steamcmdinstaller3.9.sh
+      mv /root/cmdup/steamcmdinstaller3.9.sh /root/
+      chmod +x steamcmdinstaller3.9.sh
+      ./steamcmdinstaller3.9.sh
+    else
  echo -a updating....
  mkdir /home/$USER/oldsh
  mv $0 /home/$USER/oldsh
@@ -54,10 +75,18 @@ if [ $? -eq 1 ]; then
  mv /home/$USER/cmdup/steamcmdinstaller3.9.sh /home/$USER/
  chmod +x steamcmdinstaller3.9.sh
  ./steamcmdinstaller3.9.sh
+  fi
 else
-    rm -rf /home/$USER/cmdup
-    
+  if [  $USER == "root" ]
+  then
+    rm -rf /root/cmdup
+
     echo you are up to date
+  else
+    rm -rf /home/$USER/cmdup
+
+    echo you are up to date
+  fi
 fi
 
 function getInput()
@@ -83,15 +112,27 @@ select mai in "Maintenance" "Install"; do
 done
 if test "$mai" == "1"
 then
- 
+
+  if [  $USER == "root" ]
+  then
+    rm -rf servermaintenance.sh
+    mv  /root/cmdup/servermaintenance.sh /root/
+    chmod +x servermaintenance.sh
+    rm -rf root/cmdup
+     clear
+
+    ./servermaintenance.sh
+    exit
+  else
  rm -rf servermaintenance.sh
  mv  /home/$USER/cmdup/servermaintenance.sh /home/$USER/
  chmod +x servermaintenance.sh
  rm -rf home/$USER/cmdup
   clear
- 
+
  ./servermaintenance.sh
  exit
+ fi
 fi
 
 echo ------------ This script installs SteamCMD dedicated servers ------------
@@ -106,7 +147,8 @@ then
   if [[ "$archit" == "x86_64" ]]; then
    case "$distro" in
      debian*)  sudo dpkg --add-architecture i386 ; sudo apt-get update ; sudo apt-get install lib32gcc1 ; sudo apt-get install lib32stdc++6   ;;
-     centos*)  sudo yum check-update ; sudo yum makecache ; sudo yum install lib32gcc1 ; sudo yum install lib32stdc++6 ;;
+     #centos*)  sudo yum check-update ; sudo yum makecache ; sudo yum install lib32gcc1 ; sudo yum install lib32stdc++6 ;;
+     centos*)  sudo yum check-update ; sudo yum makecache ; sudo yum install libgcc.i686 libstdc++;;
      ubuntu*)  sudo dpkg --add-architecture i386 ; sudo apt-get update ; sudo apt-get install lib32gcc1 ; sudo apt-get install lib32stdc++6  ;;
      mint*)    sudo dpkg --add-architecture i386 ; sudo apt-get update ; sudo apt-get install lib32gcc1 ; sudo apt-get install lib32stdc++6  ;;
    zorin*) sudo dpkg --add-architecture i386 ; sudo apt-get update ; sudo apt-get install lib32gcc1 ; sudo apt-get install lib32stdc++6  ;;
@@ -116,21 +158,28 @@ then
   else
    case "$distro" in
    debian*)   sudo apt-get install lib32gcc1  ;;
-   centos*)   sudo yum install lib32gcc1 ;;
+   #centos*)   sudo yum install lib32gcc1 ;;
+   centos*)   sudo yum install libgcc.i686 ;;
    ubuntu*)  sudo apt-get install lib32gcc1  ;;
    mint*)     sudo apt-get install lib32gcc1  ;;
    zorin*)   sudo apt-get install lib32gcc1  ;;
    *)        echo "unknown distro: '$distro' skipping update, you will need to install those package manually:lib32gcc1 " ; ukwn= 1 ;;
   esac
-   
+
   fi
 fi
 
 if [ -n "$insdir" ]; then
   echo ------- Making directory /steamcmd at $insdir -------
 else
+  if [  $USER == "root" ]
+  then
+  echo ------- Making directory /steamcmd at /root -------
+  insdir="/root"
+  else
   echo ------- Making directory /steamcmd at /home/$USER -------
   insdir="/home/$USER"
+  fi
 fi
 
 # Making a directory and switching into it
@@ -175,10 +224,10 @@ else
    fi
   fi
  fi
- fi
+ #fi
 echo ------- Do you wish to install a game now ? [y or n] -------
 read -r bool
-   
+
 if test "$bool" == "y"
 then
   getInput "Enter a user for steam, or login as anonymous" "user name" user
@@ -234,10 +283,20 @@ else
   mkdir $insdir/$dir
   if test "$appmod" == "no"
   then
+    if [  $USER == "root" ]
+    then
+      rm -rf /root/cmdup
+    else
     rm -rf /home/$USER/cmdup
+  fi
     ./steamcmd.sh +login $user $pass +force_install_dir $insdir/$dir +app_update $appid validate +quit
   else
+    if [  $USER == "root" ]
+    then
+      rm -rf /root/cmdup
+    else
     rm -rf /home/$USER/cmdup
+  fi
     ./steamcmd.sh +login $user $pass +force_install_dir $insdir/$dir +app_update $appid validate +app_set_config "90 mod $appmod" +quit
   fi
 fi
