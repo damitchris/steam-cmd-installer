@@ -1,3 +1,4 @@
+This is a fork of Gousaid67/steam-cmd-installer
 # steamcmd installer for linux
 this linux script will automatically download and install steamcmd and will let either automatically install a game of your choice or just update steam and end there
 Plan: make the script put the user input before starting any work so the ycan abort without having to delete the steamcmd folder each time you abort.
